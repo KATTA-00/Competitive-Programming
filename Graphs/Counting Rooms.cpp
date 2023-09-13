@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-#include <map>
-
 using namespace std;
+
+#include <map>
 #define MAX_N 20001
 
 struct Node
