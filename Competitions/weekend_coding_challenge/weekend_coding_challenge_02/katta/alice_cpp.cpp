@@ -4,12 +4,15 @@
 #include <climits>
 
 using namespace std;
+#define MAX 5005
 
 typedef pair<int, int> pii;
+vector<pii> graph[MAX];
+int N, M, D, Q;
 
-int dijkstra(vector<vector<pii>> &graph, int start, int end)
+int dijkstra(int start, int end)
 {
-    int n = graph.size();
+    int n = N;
     vector<int> distances(n, INT_MAX);
     distances[start] = 0;
     priority_queue<pii, vector<pii>, greater<pii>> pq;
@@ -45,9 +48,7 @@ int dijkstra(vector<vector<pii>> &graph, int start, int end)
 
 int main()
 {
-    int N, M, D, Q;
     cin >> N >> M;
-    vector<vector<pii>> graph(N);
 
     for (int i = 0; i < M; i++)
     {
@@ -57,16 +58,12 @@ int main()
     }
 
     cin >> D >> Q;
-    vector<int> cities(Q);
+    int c;
 
     for (int i = 0; i < Q; i++)
     {
-        cin >> cities[i];
-    }
-
-    for (int city : cities)
-    {
-        int distance = dijkstra(graph, city - 1, D - 1);
+        cin >> c;
+        int distance = dijkstra(c - 1, D - 1);
         if (distance == INT_MAX)
         {
             cout << "Impossible" << endl;

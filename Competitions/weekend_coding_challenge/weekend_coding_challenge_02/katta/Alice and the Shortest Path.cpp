@@ -15,7 +15,6 @@ int main()
         if (grid[u][v] == 0 || grid[u][v] > w)
         {
             grid[u][v] = w;
-            grid[v][u] = w;
         }
     }
 
@@ -47,16 +46,10 @@ int main()
     while (!q.empty())
     {
         int a = q.top().second;
-        int k = q.top().first;
         q.pop();
 
         if (processed[a])
             continue;
-
-        if (-k > distance[a])
-        {
-            continue;
-        }
 
         processed[a] = true;
 
