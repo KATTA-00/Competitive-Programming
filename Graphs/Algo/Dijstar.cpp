@@ -9,11 +9,13 @@ using namespace std;
 typedef pair<int, int> pii;
 vector<pii> graph[MAX];
 int N, M, D, Q;
+int distances[MAX];
+// INT_MAX
 
 int dijkstra(int start, int end)
 {
     int n = N;
-    vector<int> distances(n, INT_MAX);
+    fill(distances, distances + n + 1, INT_MAX);
     distances[start] = 0;
     priority_queue<pii, vector<pii>, greater<pii>> pq;
     pq.push({0, start});
@@ -64,6 +66,7 @@ int main()
     {
         cin >> c;
         int distance = dijkstra(c - 1, D - 1);
+
         if (distance == INT_MAX)
         {
             cout << "Impossible" << endl;
