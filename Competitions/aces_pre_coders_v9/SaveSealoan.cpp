@@ -3,14 +3,16 @@
 #include <queue>
 #include <limits>
 #include <unordered_set>
+#include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
 const int INF = numeric_limits<int>::max();
 const int MAX_N = 100010;
 
-vector<pair<int, int>> adj[MAX_N];
-vector<vector<int>> currencies(MAX_N);
+vector<pair<int, int>> adj[MAX_N]; // Adjacency list for planets and travel times
+vector<vector<int>> currencies(MAX_N); // Currencies on each planet
 int dist[MAX_N][11]; // Minimum times to reach each planet with specific currencies
 
 struct State {
@@ -74,14 +76,18 @@ int main() {
 
             // Check if the planet has the currency needed
             unordered_set<int> currencies_set(currencies[neighbor].begin(), currencies[neighbor].end());
-            if (currencies_set.count(currency) == 0) {
-                new_currency++;
+            for (int required_currency : currencies[planet]) {
+                currencies_set.insert(required_currency);
+            }
+
+            if (currencies_set.size() > K) {
+                continue; // Skip if too many currencies are required
             }
 
             // Relaxation step
-            if (new_time < dist[neighbor][new_currency] && new_currency <= K) {
-                dist[neighbor][new_currency] = new_time;
-                pq.emplace(neighbor, new_currency, new_time);
+            if (new_time < dist[neighbor][currencies_set.size()]) {
+                dist[neighbor][currencies_set.size()] = new_time;
+                pq.emplace(neighbor, currencies_set.size(), new_time);
             }
         }
     }
