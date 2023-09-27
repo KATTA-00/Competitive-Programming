@@ -5,11 +5,11 @@
 using namespace std;
 
 #define MAX 5005
+const int INF = INT_MAX; // Use INT_MAX for infinity
 
 vector<vector<int>> edge;
 int N, M, D, Q;
 int distances[MAX];
-const int INF = INT_MAX; // Use INT_MAX for infinity
 
 int bellman(int start, int end)
 {
