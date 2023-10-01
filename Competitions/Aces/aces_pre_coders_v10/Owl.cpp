@@ -9,9 +9,8 @@ using namespace std;
 int link[MAX];
 int size[MAX];
 int numbers[MAX];
+int connected[MAX][MAX];
 vector<int> components;
-
-// store the representative of each node
 
 int find(int x)
 {
@@ -57,14 +56,15 @@ int main()
         if (!same(a, b))
         {
 
-            
-
-            if (find(a) == a && find(b) == b){
+            if (find(a) == a && find(b) == b)
+            {
                 numbers[a] = c;
                 numbers[b] = c;
                 c++;
-            }else{
-                
+            }
+            else
+            {
+
                 numbers[a] = numbers[find(a)];
             }
 
