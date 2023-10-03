@@ -26,9 +26,11 @@ ll query(int idx)
 void dfs(int u = 1, int p = 0)
 {
     in[u] = ++timer;
+
     for (int c : G[u])
         if (c != p)
             dfs(c, u);
+
     out[u] = ++timer;
 }
 

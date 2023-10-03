@@ -4,14 +4,14 @@
 #include <climits>
 
 using namespace std;
-#define MAX 5005
+#define MAX 3001
 
 typedef pair<int, int> pii;
 vector<pii> graph[MAX];
-int N, M, D, Q;
+int N, M, D, Q, t;
 int distances[MAX];
 
-int dijkstra(int start, int end)
+int dijkstra(int start)
 {
     int n = N;
     fill(distances, distances + n + 1, INT_MAX);
@@ -44,36 +44,44 @@ int dijkstra(int start, int end)
         }
     }
 
-    return distances[end];
+    return 0;
 }
 
 int main()
 {
-    cin >> N >> M;
+    cin >> t;
 
-    for (int i = 0; i < M; i++)
+    for (int q = 0; q < t; q++)
     {
-        int u, v, w;
-        cin >> u >> v >> w;
-        graph[u - 1].push_back({v - 1, w});
-    }
-
-    cin >> D >> Q;
-    int c;
-
-    for (int i = 0; i < Q; i++)
-    {
-        cin >> c;
-        int distance = dijkstra(c - 1, D - 1);
-
-        if (distance == INT_MAX)
+        cin >> N >> M;
+        for (int i = 0; i < N; i++)
         {
-            cout << "Impossible" << endl;
+            graph[i].clear();
         }
-        else
+
+        for (int i = 0; i < M; i++)
         {
-            cout << distance << endl;
+            int u, v, w;
+            cin >> u >> v >> w;
+            graph[u - 1].push_back({v - 1, w});
+            graph[v - 1].push_back({u - 1, w});
         }
+
+        cin >> D;
+
+        dijkstra(D - 1);
+
+        for (int i = 0; i < N; i++)
+        {
+            if (D - 1 == i)
+                continue;
+            if (distances[i] == INT_MAX)
+                cout << -1 << " ";
+            else
+                cout << distances[i] << " ";
+        }
+
+        cout << endl;
     }
 
     return 0;
