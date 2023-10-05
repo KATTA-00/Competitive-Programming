@@ -56,8 +56,14 @@ int main()
         fill(begin(colour), begin(colour) + n, 0);
 
         colour[0] = 1;
+
         if (dfs(0) == 0)
-            cout << "NO" << endl;
+        {
+            if (visited[n - 1])
+                cout << "NO" << endl;
+            else
+                cout << "YES" << endl;
+        }
     }
 
     return 0;
