@@ -34,3 +34,16 @@
 - [MoraXtreme 5.0](https://www.hackerrank.com/contests/moraxtreme-5-0/challenges)
 - [MoraXtreme 6.0](https://www.hackerrank.com/contests/moraxtreme6/challenges)
 - [MoraXtreme 7.0](https://www.hackerrank.com/contests/moraxtreme-7-0/challenges/filters/page:1)
+
+## IEEEXtreme
+
+### Weekend Coding Challenge
+
+- [Weekend Coding Challenge {01/06}](https://www.hackerrank.com/contests/weekendcodingchallenge-01/challenges)
+- [Weekend Coding Challenge {02/06}](https://www.hackerrank.com/contests/weekend-coding-challenge-0206/challenges)
+- [Weekend Coding Challenge {03/06}](https://www.hackerrank.com/contests/weekend-coding-challenge-0306/challenges)
+- [Weekend Coding Challenge {04/06}](https://www.hackerrank.com/weekend-coding-challenge-0406)
+
+### IEEEXtreme Practice Community
+
+- [IEEEXtreme Practice Community](https://www.hackerrank.com/contests/ieeextreme-challenges/challenges)
