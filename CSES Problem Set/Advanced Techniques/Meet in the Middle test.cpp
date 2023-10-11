@@ -1,13 +1,9 @@
-// C++ program to demonstrate working of Meet in the
-// Middle algorithm for maximum subset sum problem.
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long int ll;
 ll X[2000005], Y[2000005];
 int n, s;
 
-// Find all possible sum of elements of a[] and store
-// in x[]
 void calcsubarray(ll a[], ll x[], int n, int c)
 {
     for (int i = 0; i < (1 << n); i++)
@@ -20,7 +16,6 @@ void calcsubarray(ll a[], ll x[], int n, int c)
     }
 }
 
-// Returns the maximum possible sum less or equal to S
 ll solveSubsetSum(ll a[], int n, ll S)
 {
     calcsubarray(a, X, n / 2, 0);
