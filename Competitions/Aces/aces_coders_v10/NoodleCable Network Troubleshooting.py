@@ -1,73 +1,55 @@
 n = int(input())
 
 class Node:
-    def __init__(self, name, net):
+    def __init__(self, name):
         self.name = name
-        self.net = net
-        
-node = []
+        self.parent = None
+        self.children = []
 
-def find(s):
-    for i in node:
-        if i.name == s:
-            return i
-    return None
+node_dict = {}
 
-def deleteNode(s):
-    for i in range(len(node)):
-        if node[i].name == s:
-            del node[i]
-            return 0
-    
+def add_node(parent_name, child_name):
+    parent = node_dict[parent_name]
+    child = Node(child_name)
+    child.parent = parent
+    parent.children.append(child)
+    node_dict[child_name] = child
+
+def remove_node(node_name):
+    node = node_dict[node_name]
+    parent = node.parent
+    parent.children.remove(node)
+    del node_dict[node_name]
+
+def find_kth_upstream(node_name, k):
+    node = node_dict.get(node_name)
+    if not node:
+        return "None"
+    for _ in range(k):
+        if node.parent:
+            node = node.parent
+        else:
+            return "None"
+    return node.name
+
+node_dict["ROOT"] = Node("ROOT")
+
 for _ in range(n):
-    t1, t2 = list(map(str, input().strip().split()))
-    
-    if t2 == "ROOT":
-        n0 = Node(t2, None)
-        node.append(n0)
-        n = Node(t1, n0)
-        node.append(n)
-    else:
-        n = Node(t1, find(t2))
-        node.append(n)
+    t1, t2 = input().strip().split()
+    add_node(t2, t1)
 
 num = int(input())
 
 for _ in range(num):
-    # l = [n.name for n in node]
-    # print(l)
-    
     ss = input()
-
-    if ss[0] == "N":
-        temp, t1, t2 = list(map(str, ss.split(" ")))
-        n = Node(t2, find(t1))
-        node.append(n)
-        
-    elif ss[0] == "R":
-        temp, t1 = list(map(str, ss.split(" ")))
-        deleteNode(t1)
-        
+    if ss.startswith("N"):
+        _, t1, t2 = ss.split()
+        add_node(t1, t2)
+    elif ss.startswith("R"):
+        _, t1 = ss.split()
+        remove_node(t1)
     else:
-        temp, t1, t2 = list(map(str, ss.split(" ")))
+        _, t1, t2 = ss.split()
         t2 = int(t2)
-        n = find(t1)
-        
-        if n == None:
-            print("None")
-            continue
-        
-        flag = False
-        for i in range(t2):
-            if n.net == None:
-                print("None")
-                flag = True
-                break
-            n = n.net
-            
-        if flag:
-                continue
-            
-        print(n.name)
-
-
+        result = find_kth_upstream(t1, t2)
+        print(result)

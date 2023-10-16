@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int maxN = 2e5 + 1;
-const int logN = 20;
+const int maxN = 1e5 + 1;
+const int logN = 25;
 int N, Q, a, b, p[maxN][logN];
 int timer, d[maxN], in[maxN], out[maxN];
 vector<int> G[maxN];
@@ -73,7 +73,8 @@ int main()
         cin >> a >> b;
 
         int t = 0;
-        if (a == 1 || b == 1)
+
+        if (colour[lca(a, b)])
             t++;
 
         cout << t + d[a] + d[b] - 2 * d[lca(a, b)] << endl;
