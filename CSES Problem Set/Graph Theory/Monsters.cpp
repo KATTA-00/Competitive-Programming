@@ -2,6 +2,7 @@
 using namespace std;
 
 #define MAX_NUM 1001
+int const co = 498002;
 int n, m;
 char grid[MAX_NUM][MAX_NUM];
 int monsterGrid[MAX_NUM][MAX_NUM];
@@ -33,7 +34,7 @@ int main()
         {
             cin >> grid[i][j];
 
-            monsterGrid[i][j] = MAX_NUM;
+            monsterGrid[i][j] = co;
             visited[i][j] = false;
             if (grid[i][j] == 'M')
             {
@@ -46,9 +47,6 @@ int main()
                 humanGrid[i][j] = 0;
             }
         }
-
-    // q.push(monster.front());
-    // monster.pop();
 
     while (!q.empty())
     {
@@ -77,7 +75,6 @@ int main()
     //     cout << endl;
     // }
 
-    q.empty();
     q.push(start);
     visited[start.first][start.second] = true;
     int x, y;
@@ -141,7 +138,6 @@ int main()
 
     while (c != 'A')
     {
-        // cout << finish.first << " " << finish.second << endl;
 
         for (int i = 0; i < 4; i++)
         {

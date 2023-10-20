@@ -1,0 +1,5 @@
+cmd>>
+
+gcc Monsters.cpp -lstdc++     
+
+a.exe < Sample.txt
