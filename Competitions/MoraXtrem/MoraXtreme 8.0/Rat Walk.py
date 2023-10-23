@@ -11,26 +11,20 @@ def checkNei(x, y, x_, y_):
 
 
 def dfs(point):
-    global visited, adjMap, r
+    global visited, adjMap, r, visit
 
-    if point[0] + r >= row:
-        return 0
+    if point[0] + r >= col:
+        visit = True
+        return
     
-    visited[pointMap[point]] = True
+    visited.append(point)
 
     for p in adjMap[point]:
+        if p not in visited:
+            dfs(p)
 
-        if not visited[pointMap[p]]:
-            if dfs(p) == 0:
-                return 0
-            else:
-                return 1
             
-    return 1
-            
-
 for _ in range(t):
-    # print()
     n, r = list(map(int, input().strip().split()))
     
     visited = [False for x in range(n)]
@@ -61,16 +55,11 @@ for _ in range(t):
             starts.append(i)
     
     for i in starts:
-        visited = [False for x in range(n)]
-        if dfs(i) == 0:
+        visited = []
+        visit = False
+        dfs(i)
+        if visit:
             print("CAN'T")
             break
     else:
         print("CAN")
-            
-    
-        
-    
-    
-    
-    
