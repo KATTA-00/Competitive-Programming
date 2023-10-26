@@ -1,12 +1,5 @@
-#!/bin/python3
-
 from collections import deque
 
-
-def show(matrix):
-  if False:
-    for row in matrix:
-      print(str(row))
 
 def cost(r,b):
   dx = b[0]-r[0]
@@ -64,7 +57,6 @@ n,m,k = map(int,input().split())
 arr1 = [tuple(map(int,input().split())) for _ in range(n)]
 arr2 = [tuple(map(int,input().split())) for _ in range(m)]
 c = [[cost(r,b) for b in arr2] for r in arr1] 
-show(c)
 segs = sorted([c[r][b] for r in range(n) for b in range(m)])
 
 lo = 0
