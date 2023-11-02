@@ -8,7 +8,7 @@ using namespace std;
 
 typedef pair<int, int> pii;
 vector<pii> graph[MAX];
-int N, M, D, Q;
+int N, M, D, Q, B;
 int distances[MAX];
 
 int dijkstra(int start, int end)
@@ -49,22 +49,21 @@ int dijkstra(int start, int end)
 
 int main()
 {
-    cin >> N >> M;
+    cin >> N >> M >> Q;
 
     for (int i = 0; i < M; i++)
     {
         int u, v, w;
         cin >> u >> v >> w;
         graph[u - 1].push_back({v - 1, w});
+        graph[v - 1].push_back({u - 1, w});
     }
-
-    cin >> D >> Q;
-    int c;
 
     for (int i = 0; i < Q; i++)
     {
-        cin >> c;
-        int distance = dijkstra(c - 1, D - 1);
+        cin >> D >> B;
+
+        int distance = dijkstra(D - 1, B - 1);
 
         if (distance == INT_MAX)
         {
