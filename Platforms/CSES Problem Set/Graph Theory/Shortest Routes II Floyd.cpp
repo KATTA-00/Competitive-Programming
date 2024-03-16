@@ -20,7 +20,7 @@ int main()
         if (grid[a][b] == 0 || grid[a][b] > w)
         {
             grid[a][b] = w;
-            k
+            
                 grid[b][a] = w;
         }
     }
